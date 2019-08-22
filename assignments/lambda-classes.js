@@ -62,8 +62,8 @@ class Instructor extends Person{
   demo(subject){
     return `Today we are learning about ${subject}`
   }
-  grade(student, subject){
-    return `${this.newName} recieves a perfect score on ${subject}`
+  grade(Student, subject){
+    return `${Student.newName} recieves a perfect score on ${Student.newSubject}`
   }
 }
 
@@ -112,7 +112,7 @@ class Student extends Person {
     return `${this.newName} has submitted a PR for ${subject}.`
   }
   sprintChallenge(subject){
-    return `${this.newName} has begun sprint challenge on ${subject}`
+    return `${this.newName} has begun sprint challenge on ${subject}.`
   }
 }
 const Timothy = new Student({
@@ -150,7 +150,8 @@ console.log(Jordan.newFavLanguage);
 console.log(Jordan.newAge);
 console.log(Jordan.newGradClassName);
 console.log(Jordan.standup('mikaela23'));
-console.log(Laila.grade());
+console.log(Laila.grade(Timothy, 'math'));
+console.log(Laila.demo('Javascript'));
 /*
 Stretch Problem
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
