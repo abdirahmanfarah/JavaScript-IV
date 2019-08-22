@@ -23,12 +23,12 @@
 
 class Person{
   constructor(attributes){
-    this.name = attributes.name;
-    this.age = attributes.age;
-    this.location = attributes.location;
+    this.newName = attributes.name
+    this.newAge = attributes.age
+    this.newLocation = attributes.location
   }
   speak(){
-    return `Hello my name is ${this.name}, I am from ${this.location}. `
+    return `Hello my name is ${this.newName}, I am from ${this.newLocation}. `
   }
 }
   // const fred = new Instructor({
@@ -55,15 +55,15 @@ class Person{
 class Instructor extends Person{
   constructor(teacher){
     super(teacher);
-    this.speciality = teacher.speciality;
-    this.favLanguage = teacher.favLanguage;
-    this.catchPhrase = teacher.catchPhrase;
+    this.newSpeciality = teacher.speciality
+    this.newFavLanguage = teacher.favLanguage
+    this.newCatchPhrase = teacher.catchPhrase
   }
   demo(subject){
     return `Today we are learning about ${subject}`
   }
   grade(student, subject){
-    return `${student.name} recieves a perfect score on ${subject}`
+    return `${this.newName} recieves a perfect score on ${subject}`
   }
 }
 
@@ -79,30 +79,16 @@ class Instructor extends Person{
 class ProjectManagers extends Instructor{
   constructor(pm){
     super(pm);
-    this.gradClassName = pm.gradClassName;
-    this.favInstructor = pm.favInstructor;
+    this.newGradClassName = pm.gradClassName;
+    this.newFavInstructor = pm.favInstructor;
   }
   standup(chanel){
-    return `${name} announces to ${chanel}, @channel standy times!`
+    return `${this.newName} announces to ${chanel}, @channel standy times!`
   }
   debugsCode (student, subject){
-    return `${name} debugs ${student.name}'s code on ${subject}`
+    return `${this.newName} debugs ${student.name}'s code on ${subject}`
   }
 }
-
-const fred = new ProjectManagers({
-      name: 'Fred',
-      location: 'Bedrock',
-      age: 37,
-      favLanguage: 'JavaScript',
-      specialty: 'Front-end',
-      catchPhrase: `Don't forget the homies`
-
-
-    });
-console.log(fred.standup('web23'));
-
-
 // * Student has the following unique props:
 //   * `previousBackground` i.e. what the Student used to do before Lambda School
 //   * `className` i.e. CS132
@@ -112,7 +98,59 @@ console.log(fred.standup('web23'));
 //   * `PRAssignment` a method that receives a subject as an argument and logs out that the `student.name has submitted a PR for {subject}`
 //   * `sprintChallenge` similar to PRAssignment but logs out `student.name has begun sprint challenge on {subject}`
 
+class Student extends Person {
+  constructor(students){
+    super(students)
+    this.newPreviousBackground = students.previousBackground;
+    this.newClassName = students.className;
+    this.newFavSubjects = students.favSubjects;
+  }
+  listsSubjects(){
+    return `${this.newFavSubjects}`
+  }
+  PRAssignment(subject){
+    return `${this.newName} has submitted a PR for ${subject}.`
+  }
+  sprintChallenge(subject){
+    return `${this.newName} has begun sprint challenge on ${subject}`
+  }
+}
+const Timothy = new Student({
+  name: 'Timothy',
+  location: 'Bedrock',
+  age: 37,
+  favLanguage: 'JavaScript',
+  specialty: 'Front-end',
+  catchPhrase: `Don't forget the homies`,
+  gradClassName: 'Web23',
+  favInstructor: 'Fred'
+});
 
+const Laila = new Instructor({
+  name: 'Laila',
+  location: 'Seattle',
+  age: 23,
+  favLanguage: 'Python',
+  specialty: 'Back-end',
+  catchPhrase: `Please work`
+});
+const Jordan = new ProjectManagers({
+  name: 'Jordan',
+  location: 'New York',
+  age: 21,
+  favLanguage: 'Ruby on Rails',
+  specialty: 'Back-end',
+  catchPhrase: `I rock`,
+  gradClassName: 'Web 21'
+})
+// console.log(Timothy.PRAssignment('Javascript'));
+// console.log(Timothy.sprintChallenge('Javascript'));
+// console.log(Laila.newCatchPhrase);
+console.log(Jordan.newFavLanguage);
+console.log(Jordan.newAge);
+console.log(Jordan.newGradClassName);
+console.log(Jordan.standup('mikaela23'));
+console.log(Laila.grade());
 /*
 Stretch Problem
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
