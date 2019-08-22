@@ -32,7 +32,7 @@ class GameObject {
     this.dimensions = attributes.dimensions;
   }
   destroy(){
-    `${this.name} was removed from the game.`
+   return `${this.name} was removed from the game.`
   }
 }
 
