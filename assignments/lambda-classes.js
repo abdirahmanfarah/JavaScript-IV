@@ -62,10 +62,19 @@ class Instructor extends Person{
   demo(subject){
     return `Today we are learning about ${subject}`
   }
-  grade(Student, subject){
-    return `${Student.newName} recieves a perfect score on ${Student.newSubject}`
+  grade(student, subject){
+    return `${student} recieves a perfect score on ${subject}.`
+  }
+  doesStudentGraduate(student, grade){
+    if(grade >= 70){
+      return `${student} graduates!`
+    }
+    else{
+      return `Continues grading ${student} assignments.`
+    }
   }
 }
+
 
 
 // * ProjectManagers are extensions of Instructors
@@ -86,7 +95,7 @@ class ProjectManagers extends Instructor{
     return `${this.newName} announces to ${chanel}, @channel standy times!`
   }
   debugsCode (student, subject){
-    return `${this.newName} debugs ${student.name}'s code on ${subject}`
+    return `${this.newName} debugs ${student}'s code on ${subject}`
   }
 }
 // * Student has the following unique props:
@@ -101,6 +110,7 @@ class ProjectManagers extends Instructor{
 class Student extends Person {
   constructor(students){
     super(students)
+    this.name = students.name
     this.newPreviousBackground = students.previousBackground;
     this.newClassName = students.className;
     this.newFavSubjects = students.favSubjects;
@@ -115,25 +125,28 @@ class Student extends Person {
     return `${this.newName} has begun sprint challenge on ${subject}.`
   }
 }
+ const Laila = new Instructor({
+    name: 'Laila',
+    location: 'Seattle',
+    age: 23,
+    favLanguage: 'Python',
+    specialty: 'Back-end',
+    catchPhrase: `Please work`
+});
+
 const Timothy = new Student({
   name: 'Timothy',
   location: 'Bedrock',
   age: 37,
-  favLanguage: 'JavaScript',
+  favSubjects: 'JavaScript',
   specialty: 'Front-end',
   catchPhrase: `Don't forget the homies`,
   gradClassName: 'Web23',
   favInstructor: 'Fred'
 });
+console.log(Timothy.newAge);
 
-const Laila = new Instructor({
-  name: 'Laila',
-  location: 'Seattle',
-  age: 23,
-  favLanguage: 'Python',
-  specialty: 'Back-end',
-  catchPhrase: `Please work`
-});
+
 const Jordan = new ProjectManagers({
   name: 'Jordan',
   location: 'New York',
@@ -143,15 +156,17 @@ const Jordan = new ProjectManagers({
   catchPhrase: `I rock`,
   gradClassName: 'Web 21'
 })
-// console.log(Timothy.PRAssignment('Javascript'));
-// console.log(Timothy.sprintChallenge('Javascript'));
-// console.log(Laila.newCatchPhrase);
+console.log(Laila.doesStudentGraduate(Timothy.newName, 60));
+console.log(Timothy.PRAssignment('Javascript'));
+console.log(Timothy.sprintChallenge('Javascript'));
+console.log(Laila.newCatchPhrase);
 console.log(Jordan.newFavLanguage);
 console.log(Jordan.newAge);
 console.log(Jordan.newGradClassName);
 console.log(Jordan.standup('mikaela23'));
-console.log(Laila.grade(Timothy, 'math'));
+console.log(Laila.grade(Timothy.newName, Timothy.newFavSubjects ));
 console.log(Laila.demo('Javascript'));
+console.log(Jordan.debugsCode(Timothy.newName, Timothy.newFavSubjects));
 /*
 Stretch Problem
 * Extend the functionality of the Student by adding a prop called grade and setting it equal to a number between 1-100.
